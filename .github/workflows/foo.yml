@@ -9,9 +9,13 @@ jobs:
     steps:
     - name: Check out repository code
       uses: actions/checkout@master
-
+    - name: Install and Build
+      run: npm install && npm run build:h5
     - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        branch: gh-pages
+        folder: dist/build/h5
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
